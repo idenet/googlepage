@@ -6,6 +6,7 @@ import { useRecoilValue } from 'recoil'
 import { urlItems, listState } from '../store'
 import Image from 'next/image'
 import Link from 'next/link'
+import { CgCloseO } from 'react-icons/cg'
 
 export default function Card() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -27,6 +28,7 @@ export default function Card() {
             _hover={{ bgColor: 'rgba(255, 255, 255, 0.1)' }}
             borderRadius="10px"
           >
+            <CgCloseO size="16"></CgCloseO>
             <Box
               w="48px"
               h="48px"
