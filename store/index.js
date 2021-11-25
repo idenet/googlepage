@@ -1,3 +1,3 @@
 export { urlItems } from './atoms'
 export { listState } from './selectors'
-export { useAddItem } from './hooks'
+export { useAddItem, useDeleteItem } from './hooks'

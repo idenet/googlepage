@@ -1,18 +1,26 @@
-import { Wrap, WrapItem, Box, useDisclosure } from '@chakra-ui/react'
+import {
+  Wrap,
+  WrapItem,
+  Box,
+  useDisclosure,
+  CloseButton,
+} from '@chakra-ui/react'
 import React, { useRef } from 'react'
 import { GrAdd } from 'react-icons/gr'
 import Dialog from './Dialog'
 import { useRecoilValue } from 'recoil'
-import { urlItems, listState } from '../store'
+import { urlItems, listState, useDeleteItem } from '../store'
 import Image from 'next/image'
 import Link from 'next/link'
-import { CgCloseO } from 'react-icons/cg'
 
 export default function Card() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
   const dialogRef = useRef(null)
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const listItems = useRecoilValue(urlItems)
   const { listTotal } = useRecoilValue(listState)
+  const remove = useDeleteItem()
+
   return (
     <>
       <Wrap maxW="600px" h="228px" mx="auto" mt="10px">
@@ -27,8 +35,16 @@ export default function Card() {
             justifyContent="center"
             _hover={{ bgColor: 'rgba(255, 255, 255, 0.1)' }}
             borderRadius="10px"
+            pos="relative"
           >
-            <CgCloseO size="16"></CgCloseO>
+            <CloseButton
+              size="sm"
+              position="absolute"
+              top="6px"
+              right="6px"
+              color="#b20b30"
+              onClick={() => remove(item)}
+            />
             <Box
               w="48px"
               h="48px"

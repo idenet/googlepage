@@ -6,6 +6,10 @@ const cloneIndex = (items, url) => ({
   index: items.findIndex((item) => item.url === url),
 })
 
+/**
+ * 添加
+ * @returns
+ */
 export const useAddItem = () => {
   const [items, setItems] = useRecoilState(urlItems)
   return (data) => {
@@ -13,5 +17,16 @@ export const useAddItem = () => {
     if (index === -1) {
       setItems([...clone, { ...data }])
     }
+  }
+}
+
+/**
+ * 删除
+ * @returns
+ */
+export const useDeleteItem = () => {
+  const [items, setItems] = useRecoilState(urlItems)
+  return (data) => {
+    setItems(items.filter((item) => item.url !== data.url))
   }
 }
